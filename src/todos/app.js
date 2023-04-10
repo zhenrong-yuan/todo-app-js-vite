@@ -1,12 +1,13 @@
 import html from './app.html?raw';
 import todoStore, { Filters } from '../store/todo.store';
-import { renderTodos } from './use-cases';
+import { renderTodos, renderPending } from './use-cases';
 
 const ElementIDs = {
     ClearCompletedButton: '.clear-completed',
     TodoList: '.todo-list',
     NewTodoInput: '#new-todo-input',
     TodoFilters: '.filtro',
+    PendingCountLabel: '#pending-count',
 }
 
 /**
@@ -18,6 +19,11 @@ export const App = ( elementId ) => {
     const displayTodos = () => {
         const todos = todoStore.getTodos( todoStore.getCurrentFilter() );
         renderTodos( ElementIDs.TodoList, todos );
+        updatePendingCount();
+    }
+
+    const updatePendingCount = () => {
+        renderPending( ElementIDs.PendingCountLabel );
     }
 
  // Esta es una función anónima auto invocada. Se va a llamar cuando la función app se llama.
