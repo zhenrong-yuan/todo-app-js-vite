@@ -39,8 +39,7 @@ const getTodos = ( filter = Filters.All ) => {
             return state.todos.filter( todo => !todo.done );
              
         default:
-            throw new Error(`Option ${ filter } is not valid.`)
-            break;
+            throw new Error(`Option ${ filter } is not valid.`);
     }
 }
 
@@ -59,7 +58,7 @@ const addTodo = ( description ) => {
  * @param {String} todoId 
  */
 const toggleTodo = ( todoId ) => {
-    state.todos = state.todo.map( todo => {
+    state.todos = state.todos.map( todo => {
         if (todo.id === todoId) {
             todo.done = !todo.done;
         }
@@ -67,12 +66,12 @@ const toggleTodo = ( todoId ) => {
     });
 }
 
-const deleteTodo = () => {
-    state.todos = state.todo.filter( todo => todo.id !== todoId );
+const deleteTodo = ( todoId ) => {
+    state.todos = state.todos.filter( todo => todo.id !== todoId );
 }
 
 const deleteCompleted = () => {
-    state.todos = state.todo.filter( todo => todo.done );
+    state.todos = state.todos.filter( todo => todo.done );
 }
 
 /**
